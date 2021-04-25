@@ -17,6 +17,7 @@ namespace MeditationTimer
     //  grid mit spalten: date, time, x th time of the day, duration
     //next optimal meditation time
     //  dawn or dusk
+    //Infos über meditation techniques + link
     //statistics: 
 	//	average meditation length a session, average meditation length a day, days meditated, days missed, longest meditation ever, at what time do I meditate most often, graph(line graph) like from ticktick(screenshot on desktop), 
     //on close: stoppuhr pause if stopuhr zeit nicht 00:00:00, bescheid geben das Zeit verworfen wird

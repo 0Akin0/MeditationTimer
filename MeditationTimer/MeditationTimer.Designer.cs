@@ -108,9 +108,9 @@
             // cmbMeditationTechniques
             // 
             this.cmbMeditationTechniques.FormattingEnabled = true;
-            this.cmbMeditationTechniques.Location = new System.Drawing.Point(17, 169);
+            this.cmbMeditationTechniques.Location = new System.Drawing.Point(12, 169);
             this.cmbMeditationTechniques.Name = "cmbMeditationTechniques";
-            this.cmbMeditationTechniques.Size = new System.Drawing.Size(171, 21);
+            this.cmbMeditationTechniques.Size = new System.Drawing.Size(176, 21);
             this.cmbMeditationTechniques.TabIndex = 6;
             // 
             // lblDurationToday
