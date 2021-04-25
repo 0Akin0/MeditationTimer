@@ -121,20 +121,24 @@ namespace MeditationTimer
 
         private void UpdateTimeTodayLabel()
         {
-            TextFileConnection conn = new TextFileConnection(TimeFileFullPath);
             TimeSpan meditatedToday = new TimeSpan();
+            int countMeditatedToday = 0;
+            TextFileConnection conn = new TextFileConnection(TimeFileFullPath);
             List<MeditationSession> sessions = conn.GetMeditationSessions();
             lblDurationToday.Text = "Time meditated today: ";
+            lblAmmountToday.Text = "How often meditated today: ";
 
             foreach (var session in sessions)
             {
                 if (session.EndDateTime.Date == DateTime.Today)
                 {
                     meditatedToday = meditatedToday.Add(session.Duration);
+                    countMeditatedToday += 1;
                 }
             }
 
             lblDurationToday.Text += MeditationSession.GetDurationString(meditatedToday);
+            lblAmmountToday.Text += countMeditatedToday;
         }
 
     }

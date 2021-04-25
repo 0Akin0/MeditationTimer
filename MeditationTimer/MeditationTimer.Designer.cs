@@ -38,6 +38,7 @@
             this.timeMeditation = new System.Windows.Forms.Timer(this.components);
             this.cmbMeditationTechniques = new System.Windows.Forms.ComboBox();
             this.lblDurationToday = new System.Windows.Forms.Label();
+            this.lblAmmountToday = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStopwatch
@@ -122,11 +123,21 @@
             this.lblDurationToday.TabIndex = 7;
             this.lblDurationToday.Text = "label1";
             // 
+            // lblAmmountToday
+            // 
+            this.lblAmmountToday.AutoSize = true;
+            this.lblAmmountToday.Location = new System.Drawing.Point(17, 60);
+            this.lblAmmountToday.Name = "lblAmmountToday";
+            this.lblAmmountToday.Size = new System.Drawing.Size(35, 13);
+            this.lblAmmountToday.TabIndex = 8;
+            this.lblAmmountToday.Text = "label1";
+            // 
             // MeditationTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(200, 279);
+            this.Controls.Add(this.lblAmmountToday);
             this.Controls.Add(this.lblDurationToday);
             this.Controls.Add(this.cmbMeditationTechniques);
             this.Controls.Add(this.btnViewResults);
@@ -153,6 +164,7 @@
         private System.Windows.Forms.Timer timeMeditation;
         private System.Windows.Forms.ComboBox cmbMeditationTechniques;
         private System.Windows.Forms.Label lblDurationToday;
+        private System.Windows.Forms.Label lblAmmountToday;
     }
 }
 

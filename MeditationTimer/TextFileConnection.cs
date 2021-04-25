@@ -46,10 +46,12 @@ namespace MeditationTimer
 
             return sessions;
         }
+
         public List<string> GetOftenUsedMeditations()
         {
             return GetMeditations(0);
         }
+
         public List<string> GetSometimesUsedMeditations()
         {
             return GetMeditations(1);
