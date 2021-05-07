@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MeditationTimer
 {
-    class MeditationSession
+    public class MeditationSession
     {
         public MeditationSession()
         {

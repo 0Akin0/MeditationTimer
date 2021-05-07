@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MeditationTimer
@@ -26,13 +19,14 @@ namespace MeditationTimer
     public partial class MeditationTimer : Form
     {
         Stopwatch Stopwatch;
-        public string TimeFileFullPath { get { return Path.Combine(Directory.GetCurrentDirectory(), "MeditationTimes.txt"); } }
         public string StopwatchElapsedTime { get { return MeditationSession.GetDurationString(Stopwatch.Elapsed); } }
+        public TextFileConnection Conn;
 
         public MeditationTimer()
         {
             InitializeComponent();
             Stopwatch = new Stopwatch();
+            Conn = new TextFileConnection();
             //timeMeditation ist standardmäßig aktiv
 
             AddMeditationTechniques();
@@ -88,8 +82,7 @@ namespace MeditationTimer
             if (result == DialogResult.Yes)
             {
                 //File.AppendAllText(TimeFileFullPath, $"{DateTime.Now.ToString()};{StopwatchElapsedTime};{cmbMeditationTechniques.SelectedItem.ToString()}\n");
-                TextFileConnection conn = new TextFileConnection(TimeFileFullPath);
-                conn.AppendSession(Stopwatch.Elapsed, cmbMeditationTechniques.SelectedItem.ToString());
+                Conn.AppendSession(Stopwatch.Elapsed, cmbMeditationTechniques.SelectedItem.ToString());
 
                 cmbMeditationTechniques.SelectedItem = null;
                 Stopwatch.Reset();
@@ -99,21 +92,19 @@ namespace MeditationTimer
 
         private void btnViewResults_Click(object sender, EventArgs e)
         {
-            Process.Start(TimeFileFullPath);
+            Conn.OpenFile();
         }
 
         private void AddMeditationTechniques()
         {
-            TextFileConnection conn = new TextFileConnection(TimeFileFullPath);
-
-            foreach (var technique in conn.GetOftenUsedMeditations())
+            foreach (var technique in Conn.GetOftenUsedMeditations())
             {
                 cmbMeditationTechniques.Items.Add(technique);
             }
 
             cmbMeditationTechniques.Items.Add("");
 
-            foreach (var technique in conn.GetSometimesUsedMeditations())
+            foreach (var technique in Conn.GetSometimesUsedMeditations())
             {
                 cmbMeditationTechniques.Items.Add(technique);
             }
@@ -123,8 +114,7 @@ namespace MeditationTimer
         {
             TimeSpan meditatedToday = new TimeSpan();
             int countMeditatedToday = 0;
-            TextFileConnection conn = new TextFileConnection(TimeFileFullPath);
-            List<MeditationSession> sessions = conn.GetMeditationSessions();
+            List<MeditationSession> sessions = Conn.GetMeditationSessions();
             lblDurationToday.Text = "Time meditated today: ";
             lblAmmountToday.Text = "How often meditated today: ";
 
