@@ -88,7 +88,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Japanese Temple Bell Small.wav">
+    <None Include="MeditationAlertNoise.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

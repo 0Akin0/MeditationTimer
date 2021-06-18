@@ -174,7 +174,7 @@ namespace MeditationTimer
 
         private void PlaySound()
         {
-            const string sAudioFileName = "Japanese Temple Bell Small.wav";
+            const string sAudioFileName = "MeditationAlertNoise.wav";
             string sAudioPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), sAudioFileName);
 
             using (var soundPlayer = new System.Media.SoundPlayer(sAudioPath))
