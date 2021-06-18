@@ -39,6 +39,10 @@
             this.cmbMeditationTechniques = new System.Windows.Forms.ComboBox();
             this.lblDurationToday = new System.Windows.Forms.Label();
             this.lblAmmountToday = new System.Windows.Forms.Label();
+            this.lblMeditationTechnique = new System.Windows.Forms.Label();
+            this.lblNoise = new System.Windows.Forms.Label();
+            this.txtNoise = new System.Windows.Forms.TextBox();
+            this.chkNoiseAfterEvery = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblStopwatch
@@ -63,7 +67,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(113, 90);
+            this.btnPause.Location = new System.Drawing.Point(103, 90);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 2;
@@ -73,7 +77,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(13, 140);
+            this.btnReset.Location = new System.Drawing.Point(13, 119);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 3;
@@ -83,7 +87,7 @@
             // 
             // btnDone
             // 
-            this.btnDone.Location = new System.Drawing.Point(113, 140);
+            this.btnDone.Location = new System.Drawing.Point(103, 119);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(75, 23);
             this.btnDone.TabIndex = 4;
@@ -93,7 +97,7 @@
             // 
             // btnViewResults
             // 
-            this.btnViewResults.Location = new System.Drawing.Point(13, 234);
+            this.btnViewResults.Location = new System.Drawing.Point(12, 268);
             this.btnViewResults.Name = "btnViewResults";
             this.btnViewResults.Size = new System.Drawing.Size(92, 23);
             this.btnViewResults.TabIndex = 5;
@@ -109,9 +113,9 @@
             // cmbMeditationTechniques
             // 
             this.cmbMeditationTechniques.FormattingEnabled = true;
-            this.cmbMeditationTechniques.Location = new System.Drawing.Point(12, 169);
+            this.cmbMeditationTechniques.Location = new System.Drawing.Point(12, 173);
             this.cmbMeditationTechniques.Name = "cmbMeditationTechniques";
-            this.cmbMeditationTechniques.Size = new System.Drawing.Size(176, 21);
+            this.cmbMeditationTechniques.Size = new System.Drawing.Size(166, 21);
             this.cmbMeditationTechniques.TabIndex = 6;
             // 
             // lblDurationToday
@@ -119,24 +123,64 @@
             this.lblDurationToday.AutoSize = true;
             this.lblDurationToday.Location = new System.Drawing.Point(17, 42);
             this.lblDurationToday.Name = "lblDurationToday";
-            this.lblDurationToday.Size = new System.Drawing.Size(35, 13);
+            this.lblDurationToday.Size = new System.Drawing.Size(80, 13);
             this.lblDurationToday.TabIndex = 7;
-            this.lblDurationToday.Text = "label1";
+            this.lblDurationToday.Text = "Duration Today";
             // 
             // lblAmmountToday
             // 
             this.lblAmmountToday.AutoSize = true;
             this.lblAmmountToday.Location = new System.Drawing.Point(17, 60);
             this.lblAmmountToday.Name = "lblAmmountToday";
-            this.lblAmmountToday.Size = new System.Drawing.Size(35, 13);
+            this.lblAmmountToday.Size = new System.Drawing.Size(84, 13);
             this.lblAmmountToday.TabIndex = 8;
-            this.lblAmmountToday.Text = "label1";
+            this.lblAmmountToday.Text = "Ammount Today";
+            // 
+            // lblMeditationTechnique
+            // 
+            this.lblMeditationTechnique.AutoSize = true;
+            this.lblMeditationTechnique.Location = new System.Drawing.Point(10, 157);
+            this.lblMeditationTechnique.Name = "lblMeditationTechnique";
+            this.lblMeditationTechnique.Size = new System.Drawing.Size(113, 13);
+            this.lblMeditationTechnique.TabIndex = 9;
+            this.lblMeditationTechnique.Text = "Meditation Technique:";
+            // 
+            // lblNoise
+            // 
+            this.lblNoise.AutoSize = true;
+            this.lblNoise.Location = new System.Drawing.Point(10, 209);
+            this.lblNoise.Name = "lblNoise";
+            this.lblNoise.Size = new System.Drawing.Size(108, 13);
+            this.lblNoise.TabIndex = 10;
+            this.lblNoise.Text = "Noise after x minutes:";
+            // 
+            // txtNoise
+            // 
+            this.txtNoise.Location = new System.Drawing.Point(12, 225);
+            this.txtNoise.Name = "txtNoise";
+            this.txtNoise.Size = new System.Drawing.Size(100, 20);
+            this.txtNoise.TabIndex = 11;
+            this.txtNoise.Text = "0";
+            // 
+            // chkNoiseAfterEvery
+            // 
+            this.chkNoiseAfterEvery.AutoSize = true;
+            this.chkNoiseAfterEvery.Location = new System.Drawing.Point(118, 227);
+            this.chkNoiseAfterEvery.Name = "chkNoiseAfterEvery";
+            this.chkNoiseAfterEvery.Size = new System.Drawing.Size(76, 17);
+            this.chkNoiseAfterEvery.TabIndex = 12;
+            this.chkNoiseAfterEvery.Text = "after every";
+            this.chkNoiseAfterEvery.UseVisualStyleBackColor = true;
             // 
             // MeditationTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(200, 279);
+            this.ClientSize = new System.Drawing.Size(200, 303);
+            this.Controls.Add(this.chkNoiseAfterEvery);
+            this.Controls.Add(this.txtNoise);
+            this.Controls.Add(this.lblNoise);
+            this.Controls.Add(this.lblMeditationTechnique);
             this.Controls.Add(this.lblAmmountToday);
             this.Controls.Add(this.lblDurationToday);
             this.Controls.Add(this.cmbMeditationTechniques);
@@ -165,6 +209,10 @@
         private System.Windows.Forms.ComboBox cmbMeditationTechniques;
         private System.Windows.Forms.Label lblDurationToday;
         private System.Windows.Forms.Label lblAmmountToday;
+        private System.Windows.Forms.Label lblMeditationTechnique;
+        private System.Windows.Forms.Label lblNoise;
+        private System.Windows.Forms.TextBox txtNoise;
+        private System.Windows.Forms.CheckBox chkNoiseAfterEvery;
     }
 }
 

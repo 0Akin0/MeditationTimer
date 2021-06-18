@@ -18,9 +18,10 @@ namespace MeditationTimer
 
     public partial class MeditationTimer : Form
     {
-        Stopwatch Stopwatch;
-        public string StopwatchElapsedTime { get { return MeditationSession.GetDurationString(Stopwatch.Elapsed); } }
-        public TextFileConnection Conn;
+        private Stopwatch Stopwatch;
+        private string StopwatchElapsedTime { get { return MeditationSession.GetDurationString(Stopwatch.Elapsed); } }
+        private TextFileConnection Conn;
+        private TimeSpan NextDongTime;
 
         public MeditationTimer()
         {
@@ -33,14 +34,45 @@ namespace MeditationTimer
             UpdateTimeTodayLabel();
         }
 
+        private TimeSpan DongAfterXMinutes {
+            get {
+                int numberInTextbox = 0;
+
+                if (int.TryParse(txtNoise.Text, out numberInTextbox) && numberInTextbox > 0)
+                {
+                    return new TimeSpan(0, numberInTextbox, 0);
+                }
+
+                return TimeSpan.Zero;
+            }
+        }
+
         private void timeMeditation_Tick(object sender, EventArgs e)
         {
             lblStopwatch.Text = StopwatchElapsedTime;
+
+            if (NextDongTime > TimeSpan.Zero)
+            {
+                //timer und nächstes mal wo glocke geläutet werden soll zu string machen und vergleichen.
+                //Damit nur stunden, minuten und sekunden verglichen werden, nicht millisekunden.
+                if (StopwatchElapsedTime == MeditationSession.GetDurationString(NextDongTime))
+                {
+                    //wenn all x sekunden geläutet werden soll -> minuten anzahl die user geschrieben hat auf "nächstes mal wo glocke geläutet werden soll" addieren
+                    if (chkNoiseAfterEvery.Checked)
+                    {
+                        NextDongTime += DongAfterXMinutes;
+                    }
+
+                    PlaySound();
+                }
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             Stopwatch.Start();
+            NextDongTime = DongAfterXMinutes;
+            DongSettingsEditable(false); //man darf nicht mehr dong time ändern. Erst nachdem man neue medit session startet geht es wieder
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -58,6 +90,7 @@ namespace MeditationTimer
             {
                 cmbMeditationTechniques.SelectedItem = null;
                 Stopwatch.Reset();
+                DongSettingsEditable(true); //man darf wieder dong time ändern
             }
         }
 
@@ -87,6 +120,8 @@ namespace MeditationTimer
                 cmbMeditationTechniques.SelectedItem = null;
                 Stopwatch.Reset();
                 UpdateTimeTodayLabel();
+
+                DongSettingsEditable(true); //man darf wieder dong time ändern
             }
         }
 
@@ -129,6 +164,24 @@ namespace MeditationTimer
 
             lblDurationToday.Text += MeditationSession.GetDurationString(meditatedToday);
             lblAmmountToday.Text += countMeditatedToday;
+        }
+
+        private void DongSettingsEditable(bool enabled)
+        {
+            txtNoise.Enabled = enabled;
+            chkNoiseAfterEvery.Enabled = enabled;
+        }
+
+        private void PlaySound()
+        {
+            const string sAudioFileName = "Japanese Temple Bell Small.wav";
+            string sAudioPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), sAudioFileName);
+
+            using (var soundPlayer = new System.Media.SoundPlayer(sAudioPath))
+            {
+                soundPlayer.Load();
+                soundPlayer.Play();
+            }
         }
 
     }
