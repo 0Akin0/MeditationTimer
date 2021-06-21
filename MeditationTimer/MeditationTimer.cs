@@ -18,15 +18,15 @@ namespace MeditationTimer
 
     public partial class MeditationTimer : Form
     {
-        private Stopwatch Stopwatch;
-        private string StopwatchElapsedTime { get { return MeditationSession.GetDurationString(Stopwatch.Elapsed); } }
+        private Stopwatch GeneralStopwatch;
+        private string StopwatchElapsedTime { get { return MeditationSession.GetDurationString(GeneralStopwatch.Elapsed); } }
         private TextFileConnection Conn;
         private TimeSpan NextDongTime;
 
         public MeditationTimer()
         {
             InitializeComponent();
-            Stopwatch = new Stopwatch();
+            GeneralStopwatch = new Stopwatch();
             Conn = new TextFileConnection();
             //timeMeditation ist standardmäßig aktiv
 
@@ -70,35 +70,36 @@ namespace MeditationTimer
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Stopwatch.Start();
+            Countdown();
+            GeneralStopwatch.Start();
             NextDongTime = DongAfterXMinutes;
             DongSettingsEditable(false); //man darf nicht mehr dong time ändern. Erst nachdem man neue medit session startet geht es wieder
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            Stopwatch.Stop();
+            GeneralStopwatch.Stop();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            Stopwatch.Stop();
+            GeneralStopwatch.Stop();
 
             DialogResult result = MessageBox.Show("Do you want to reset the timer? The time will be lost.", this.Text, MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
                 cmbMeditationTechniques.SelectedItem = null;
-                Stopwatch.Reset();
+                GeneralStopwatch.Reset();
                 DongSettingsEditable(true); //man darf wieder dong time ändern
             }
         }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            Stopwatch.Stop();
+            GeneralStopwatch.Stop();
 
-            if (Stopwatch.ElapsedTicks == 0)
+            if (GeneralStopwatch.ElapsedTicks == 0)
             {
                 MessageBox.Show("No time has passed!");
                 return;
@@ -115,10 +116,10 @@ namespace MeditationTimer
             if (result == DialogResult.Yes)
             {
                 //File.AppendAllText(TimeFileFullPath, $"{DateTime.Now.ToString()};{StopwatchElapsedTime};{cmbMeditationTechniques.SelectedItem.ToString()}\n");
-                Conn.AppendSession(Stopwatch.Elapsed, cmbMeditationTechniques.SelectedItem.ToString());
+                Conn.AppendSession(GeneralStopwatch.Elapsed, cmbMeditationTechniques.SelectedItem.ToString());
 
                 cmbMeditationTechniques.SelectedItem = null;
-                Stopwatch.Reset();
+                GeneralStopwatch.Reset();
                 UpdateTimeTodayLabel();
 
                 DongSettingsEditable(true); //man darf wieder dong time ändern
@@ -182,6 +183,27 @@ namespace MeditationTimer
                 soundPlayer.Load();
                 soundPlayer.Play();
             }
+        }
+
+        private void Countdown()
+        {
+            Stopwatch countdown = new Stopwatch();
+            TimeSpan countdownDuration = new TimeSpan(0,0,11); //11, weil er bei 10 sekunden als erstes 9 anzeigt
+
+            lblStopwatch.ForeColor = System.Drawing.Color.Red;
+
+            countdown.Start();
+            while (countdown.IsRunning)
+            {
+                lblStopwatch.Text = MeditationSession.GetDurationString(countdown.Elapsed - countdownDuration);
+                Refresh();
+
+                if (lblStopwatch.Text == MeditationSession.GetDurationString(TimeSpan.Zero))
+                {
+                    countdown.Stop();
+                }
+            }
+            lblStopwatch.ForeColor = System.Drawing.Color.Black;
         }
 
     }
