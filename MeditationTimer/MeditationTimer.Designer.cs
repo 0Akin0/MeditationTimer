@@ -165,6 +165,8 @@
             // chkNoiseAfterEvery
             // 
             this.chkNoiseAfterEvery.AutoSize = true;
+            this.chkNoiseAfterEvery.Checked = true;
+            this.chkNoiseAfterEvery.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkNoiseAfterEvery.Location = new System.Drawing.Point(118, 227);
             this.chkNoiseAfterEvery.Name = "chkNoiseAfterEvery";
             this.chkNoiseAfterEvery.Size = new System.Drawing.Size(76, 17);
