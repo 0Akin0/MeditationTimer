@@ -44,6 +44,8 @@
             this.lblNoise = new System.Windows.Forms.Label();
             this.txtNoise = new System.Windows.Forms.TextBox();
             this.chkNoiseAfterEvery = new System.Windows.Forms.CheckBox();
+            this.txtMemo = new System.Windows.Forms.TextBox();
+            this.lboMemo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStopwatch
@@ -98,7 +100,7 @@
             // 
             // btnViewResults
             // 
-            this.btnViewResults.Location = new System.Drawing.Point(12, 268);
+            this.btnViewResults.Location = new System.Drawing.Point(12, 369);
             this.btnViewResults.Name = "btnViewResults";
             this.btnViewResults.Size = new System.Drawing.Size(92, 23);
             this.btnViewResults.TabIndex = 5;
@@ -149,7 +151,7 @@
             // lblNoise
             // 
             this.lblNoise.AutoSize = true;
-            this.lblNoise.Location = new System.Drawing.Point(10, 209);
+            this.lblNoise.Location = new System.Drawing.Point(10, 310);
             this.lblNoise.Name = "lblNoise";
             this.lblNoise.Size = new System.Drawing.Size(108, 13);
             this.lblNoise.TabIndex = 10;
@@ -157,7 +159,7 @@
             // 
             // txtNoise
             // 
-            this.txtNoise.Location = new System.Drawing.Point(12, 225);
+            this.txtNoise.Location = new System.Drawing.Point(12, 326);
             this.txtNoise.Name = "txtNoise";
             this.txtNoise.Size = new System.Drawing.Size(100, 20);
             this.txtNoise.TabIndex = 11;
@@ -168,18 +170,37 @@
             this.chkNoiseAfterEvery.AutoSize = true;
             this.chkNoiseAfterEvery.Checked = true;
             this.chkNoiseAfterEvery.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNoiseAfterEvery.Location = new System.Drawing.Point(118, 227);
+            this.chkNoiseAfterEvery.Location = new System.Drawing.Point(118, 328);
             this.chkNoiseAfterEvery.Name = "chkNoiseAfterEvery";
             this.chkNoiseAfterEvery.Size = new System.Drawing.Size(76, 17);
             this.chkNoiseAfterEvery.TabIndex = 12;
             this.chkNoiseAfterEvery.Text = "after every";
             this.chkNoiseAfterEvery.UseVisualStyleBackColor = true;
             // 
+            // txtMemo
+            // 
+            this.txtMemo.Location = new System.Drawing.Point(12, 215);
+            this.txtMemo.Multiline = true;
+            this.txtMemo.Name = "txtMemo";
+            this.txtMemo.Size = new System.Drawing.Size(238, 92);
+            this.txtMemo.TabIndex = 13;
+            // 
+            // lboMemo
+            // 
+            this.lboMemo.AutoSize = true;
+            this.lboMemo.Location = new System.Drawing.Point(10, 199);
+            this.lboMemo.Name = "lboMemo";
+            this.lboMemo.Size = new System.Drawing.Size(39, 13);
+            this.lboMemo.TabIndex = 14;
+            this.lboMemo.Text = "Memo:";
+            // 
             // MeditationTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(200, 303);
+            this.ClientSize = new System.Drawing.Size(262, 404);
+            this.Controls.Add(this.lboMemo);
+            this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.chkNoiseAfterEvery);
             this.Controls.Add(this.txtNoise);
             this.Controls.Add(this.lblNoise);
@@ -217,6 +238,8 @@
         private System.Windows.Forms.Label lblNoise;
         private System.Windows.Forms.TextBox txtNoise;
         private System.Windows.Forms.CheckBox chkNoiseAfterEvery;
+        private System.Windows.Forms.TextBox txtMemo;
+        private System.Windows.Forms.Label lboMemo;
     }
 }
 

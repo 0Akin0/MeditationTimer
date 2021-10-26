@@ -90,6 +90,7 @@ namespace MeditationTimer
             if (result == DialogResult.Yes)
             {
                 cmbMeditationTechniques.SelectedItem = null;
+                txtMemo.Text = string.Empty;
                 GeneralStopwatch.Reset();
                 DongSettingsEditable(true); //man darf wieder dong time ändern
             }
@@ -115,10 +116,11 @@ namespace MeditationTimer
 
             if (result == DialogResult.Yes)
             {
-                //File.AppendAllText(TimeFileFullPath, $"{DateTime.Now.ToString()};{StopwatchElapsedTime};{cmbMeditationTechniques.SelectedItem.ToString()}\n");
-                Conn.AppendSession(GeneralStopwatch.Elapsed, cmbMeditationTechniques.SelectedItem.ToString());
+                MeditationSession session = new MeditationSession(DateTime.Now ,GeneralStopwatch.Elapsed, cmbMeditationTechniques.SelectedItem.ToString(), txtMemo.Text);
+                Conn.AppendSession(session);
 
                 cmbMeditationTechniques.SelectedItem = null;
+                txtMemo.Text = string.Empty;
                 GeneralStopwatch.Reset();
                 UpdateTimeTodayLabel();
 

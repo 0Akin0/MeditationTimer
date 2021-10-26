@@ -12,16 +12,20 @@ namespace MeditationTimer
         {
         }
 
-        public MeditationSession(DateTime endDateTime, TimeSpan duration, string meditationTechnique)
-        {
+        public MeditationSession(DateTime endDateTime, TimeSpan duration, string meditationTechnique) {
             EndDateTime = endDateTime;
             Duration = duration;
             MeditationTechnique = meditationTechnique;
         }
 
+        public MeditationSession(DateTime endDateTime, TimeSpan duration, string meditationTechnique,string memo) : this (endDateTime,duration,meditationTechnique) {
+            Memo = memo;
+        }
+
         public DateTime EndDateTime { get; set; }
         public TimeSpan Duration { get; set; }
         public string MeditationTechnique { get; set; }
+        public string Memo { get; set; }
 
 
 

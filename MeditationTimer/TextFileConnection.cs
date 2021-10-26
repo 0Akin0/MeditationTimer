@@ -24,11 +24,7 @@ namespace MeditationTimer
 
         public void AppendSession(MeditationSession session)
         {
-            AppendSession(session.Duration, session.MeditationTechnique);
-        }
-        public void AppendSession(TimeSpan duration, string meditationTechnique)
-        {
-            File.AppendAllText(FilePath, $"{DateTime.Now.ToString()};{MeditationSession.GetDurationString(duration)};{meditationTechnique}\n");
+            File.AppendAllText(FilePath, $"{session.EndDateTime};{MeditationSession.GetDurationString(session.Duration)};{session.MeditationTechnique};{session.Memo}\n");
         }
 
         public List<MeditationSession> GetMeditationSessions()
@@ -49,6 +45,7 @@ namespace MeditationTimer
                     session.EndDateTime = Convert.ToDateTime(components[0]);
                     session.Duration = TimeSpan.Parse(components[1]);
                     session.MeditationTechnique = components[2];
+                    if (components.Length > 3) session.Memo = components[3];
 
                     sessions.Add(session);
                 }
